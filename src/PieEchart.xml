@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="mendix.pieechart.PieEchart" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Pie Echart</name>
+    <description>My widget description</description>
+    <icon>iVBORw0KGgoAAAANSUhEUgAAADAAAAAmCAIAAAAN749WAAAAAXNSR0IArs4c6QAA AARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAASdEVYdFNvZnR3 YXJlAEdyZWVuc2hvdF5VCAUAAALMSURBVFhH7ZfZb1JBFMb9I33xxZgmrg+1MaZu jbhEjYm48mBijXWNTWhq2xjcKhoqoQVEEENaAm2pLGWVtlhoETy2p5Pbc+8swDVp jF9+IZk7Z77zAZc7w67dPe4dxb8eqNls5ku1x6Nz3ZcDZEqRjgIdPOez2MLwyq5A IKa37kyvNcimFGknEIQYc6ZiiRXs3GyyKRxrNDKeZLMqtBbo9pNoOFrGVhqxAhxv l/9bkRVIaSHQyPskdtCJ1eBYp2yhymrEKAXqOuP1hYvobSRWiWMjJdIVViZAHujo lYD2djEUK8axkT54s6xMgDzQVKiAlnyxYhxvVyS+1HfrK6sRIwn0YHgWXYVi9Tje UrFcu/M0ymZVEAXaf9YHjugtFFuC4w3Z3yzsPTnJphQRBRp0LKC3TGzJ5vBTIH/C GmIXgd5rwYEXs/1Dce1FQ7iB9p2eUvx4QGwVPKVuPpphQ+DY1S+vJzKNBlZ2X5Js KdxA1x9Oo4eCyNpNDlh8Lz+m1utbWTZE4urhBhr3LKKHgsjaPcc9o85ktfYLpzUa fvedFBO4gaLzy+ihIO3C545E5WcdJ3Ry+XPaYj3cQPCwRw8FHb7ghyX99vjSyjpe 4igSW9J20cMNZPiB8wT3cq6o9AagjDQimBOoJZFGBHO+MnXBo4Q0IphzU6sL9mnS iMANBL9b9DBVcK4ljQjcQKduhNDDVFkHpkkjAjcQMDNn/rem/UdgiCjQ3cEY2pgk 2ElICz2iQID0rKiuH8trRy7+eX6KkQSyPYuiX8eCsx4xN0QSCHBOZtGyA3mCBWLL Qx4ICERKaNyWJj5LNlQtSoEA9dMjESwkVmJUAwFgvZhvYT/JlaoqZ1ZCC4EAOLTf H4pLdxXYmB2u9KHz8t+UntYCMSy28CtXGpJl8quV1Xq93iiV1+ZTFTiH3LPHu/q8 pF6dNgP9Pf4HkrHDAvW4fwO8a7apKv5ZxwAAAABJRU5ErkJggg==</icon>
+    <properties>
+        <!-- 自定义配置属性 dataSource -->
+        <propertyGroup caption="dataSource">
+            <property key="FormattedTooltip" type="string" required="false">
+                <caption>tooltip formatter</caption>
+                <description>tooltip formatter(触摸输出信息框的格式) </description>
+            </property>
+            <!-- 自定义配置属性 General -->
+            <property key="dataSource" type="datasource" isList="true" required="true">
+                <caption>Data source</caption>
+                <description />
+            </property>
+            <property key="PiePercentage" type="attribute" dataSource="dataSource" required="true">
+                <caption>Percentage</caption>
+                <description>Pie value isList (Decimal,Integer and Long )</description>
+                <attributeTypes>
+                    <attributeType name="Decimal"/>
+                    <attributeType name="Integer"/>
+                    <attributeType name="Long"/>
+                </attributeTypes>
+            </property>
+            <property key="LegandData" type="attribute" dataSource="dataSource" required="true">
+                <caption>LegandData</caption>
+                <description>Pie LegandData String List</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+        </propertyGroup>
+        <!-- 自定义配置属性 General -->
+        <propertyGroup caption="UI Config">
+            <property key="chartType" type="enumeration" defaultValue="pie">
+                <caption>Chart type</caption>
+                <description/>
+                <enumerationValues>
+                    <enumerationValue key="pie">Pie</enumerationValue>
+                    <enumerationValue key="donut">Doughnut</enumerationValue>
+                </enumerationValues>
+            </property>
+            <property key="ChartTheme" type="enumeration" defaultValue="default">
+                <caption>Chart Theme</caption>
+                <description/>
+                <enumerationValues>
+                <enumerationValue key="default">default</enumerationValue>
+                    <enumerationValue key="light">light</enumerationValue>
+                    <enumerationValue key="dark">dark</enumerationValue>
+                </enumerationValues>
+            </property>
+           
+            <property key="mytitle" type="string" defaultValue="Title of chart" required="false">
+                <caption>Title of chart</caption>
+                <description>Title of chart</description>
+            </property>
+            <property key="mysubtitle" type="string" defaultValue="Subtitle of chart" required="false">
+                <caption>Subtitle of chart</caption>
+                <description>Subtitle of chart</description>
+            </property>
+            <property key="showLoading" type="boolean" defaultValue="false">
+                <caption>Show Loading animation</caption>
+                <description>展示加载动画</description>
+            </property>
+            <property key="loadingTime" type="integer" defaultValue="1">
+                <caption>Loading Time </caption>
+                <description>LoadingTime:ss 加载时间：秒</description>
+            </property>
+            <property key="Showlable" type="boolean" defaultValue="false">
+                <caption>Show Label</caption>
+                <description></description>
+            </property>
+
+   
+
+        </propertyGroup>
+
+
+
+        <!-- 自定义配置属性 advance -->
+        <propertyGroup caption="advance">
+            <property key="Jsondata" type="string" multiline="true" required="false">
+                <caption>My string multiline</caption>
+                <description>My string multiline setting</description>
+            </property>
+        </propertyGroup>
+        <!-- 自定义配置属性 appearance -->
+        <propertyGroup caption="Appearance">
+            <property key="widthUnit" type="enumeration" defaultValue="percentage">
+                <caption>Width unit</caption>
+
+                <description/>
+                <enumerationValues>
+                    <enumerationValue key="percentage">Percentage</enumerationValue>
+                    <enumerationValue key="pixels">Pixels</enumerationValue>
+                </enumerationValues>
+            </property>
+            <property key="width" type="integer" defaultValue="100">
+                <caption>Width</caption>
+                <description/>
+            </property>
+            <property key="heightUnit" type="enumeration" defaultValue="percentageOfWidth">
+                <caption>Height unit</caption>
+                <description>'Percentage of width' is the aspect ratio, 'Pixels' is absolute. Warning: When using 'Percentage of parent' the parent container must have an absolute height, else nothing is displayed.</description>
+                <enumerationValues>
+                    <enumerationValue key="percentageOfWidth">Percentage of width</enumerationValue>
+                    <enumerationValue key="pixels">Pixels</enumerationValue>
+                    <enumerationValue key="percentageOfParent">Percentage of parent</enumerationValue>
+                </enumerationValues>
+            </property>
+            <property key="height" type="integer" defaultValue="400">
+                <caption>Height</caption>
+                <description/>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>

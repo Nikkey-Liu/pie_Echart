@@ -7,9 +7,11 @@ import { CSSProperties } from "react";
 import { ListValue, ListAttributeValue } from "mendix";
 import { Big } from "big.js";
 
-export type ChartTypeEnum = "pie" | "donut";
+export type ChartTypeEnum = "pie" | "RoseArea" | "RoseRadius" | "Doughnut" | "borderRadiusDoughnut";
 
 export type ChartThemeEnum = "default" | "light" | "dark";
+
+export type ShowLegendWayEnum = "horizontal" | "vertical";
 
 export type WidthUnitEnum = "percentage" | "pixels";
 
@@ -20,7 +22,6 @@ export interface PieEchartContainerProps {
     class: string;
     style?: CSSProperties;
     tabIndex?: number;
-    FormattedTooltip: string;
     dataSource: ListValue;
     PiePercentage: ListAttributeValue<Big>;
     LegandData: ListAttributeValue<string>;
@@ -28,9 +29,13 @@ export interface PieEchartContainerProps {
     ChartTheme: ChartThemeEnum;
     mytitle: string;
     mysubtitle: string;
+    showtoolBox: boolean;
     showLoading: boolean;
     loadingTime: number;
     Showlable: boolean;
+    ShowLegend: boolean;
+    ShowLegendWay: ShowLegendWayEnum;
+    FormattedTooltip: string;
     Jsondata: string;
     widthUnit: WidthUnitEnum;
     width: number;
@@ -41,7 +46,6 @@ export interface PieEchartContainerProps {
 export interface PieEchartPreviewProps {
     class: string;
     style: string;
-    FormattedTooltip: string;
     dataSource: {} | { type: string } | null;
     PiePercentage: string;
     LegandData: string;
@@ -49,9 +53,13 @@ export interface PieEchartPreviewProps {
     ChartTheme: ChartThemeEnum;
     mytitle: string;
     mysubtitle: string;
+    showtoolBox: boolean;
     showLoading: boolean;
     loadingTime: number | null;
     Showlable: boolean;
+    ShowLegend: boolean;
+    ShowLegendWay: ShowLegendWayEnum;
+    FormattedTooltip: string;
     Jsondata: string;
     widthUnit: WidthUnitEnum;
     width: number | null;

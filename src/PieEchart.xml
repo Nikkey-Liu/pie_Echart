@@ -7,11 +7,8 @@
     <icon>iVBORw0KGgoAAAANSUhEUgAAADAAAAAmCAIAAAAN749WAAAAAXNSR0IArs4c6QAA AARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAASdEVYdFNvZnR3 YXJlAEdyZWVuc2hvdF5VCAUAAALMSURBVFhH7ZfZb1JBFMb9I33xxZgmrg+1MaZu jbhEjYm48mBijXWNTWhq2xjcKhoqoQVEEENaAm2pLGWVtlhoETy2p5Pbc+8swDVp jF9+IZk7Z77zAZc7w67dPe4dxb8eqNls5ku1x6Nz3ZcDZEqRjgIdPOez2MLwyq5A IKa37kyvNcimFGknEIQYc6ZiiRXs3GyyKRxrNDKeZLMqtBbo9pNoOFrGVhqxAhxv l/9bkRVIaSHQyPskdtCJ1eBYp2yhymrEKAXqOuP1hYvobSRWiWMjJdIVViZAHujo lYD2djEUK8axkT54s6xMgDzQVKiAlnyxYhxvVyS+1HfrK6sRIwn0YHgWXYVi9Tje UrFcu/M0ymZVEAXaf9YHjugtFFuC4w3Z3yzsPTnJphQRBRp0LKC3TGzJ5vBTIH/C GmIXgd5rwYEXs/1Dce1FQ7iB9p2eUvx4QGwVPKVuPpphQ+DY1S+vJzKNBlZ2X5Js KdxA1x9Oo4eCyNpNDlh8Lz+m1utbWTZE4urhBhr3LKKHgsjaPcc9o85ktfYLpzUa fvedFBO4gaLzy+ihIO3C545E5WcdJ3Ry+XPaYj3cQPCwRw8FHb7ghyX99vjSyjpe 4igSW9J20cMNZPiB8wT3cq6o9AagjDQimBOoJZFGBHO+MnXBo4Q0IphzU6sL9mnS iMANBL9b9DBVcK4ljQjcQKduhNDDVFkHpkkjAjcQMDNn/rem/UdgiCjQ3cEY2pgk 2ElICz2iQID0rKiuH8trRy7+eX6KkQSyPYuiX8eCsx4xN0QSCHBOZtGyA3mCBWLL Qx4ICERKaNyWJj5LNlQtSoEA9dMjESwkVmJUAwFgvZhvYT/JlaoqZ1ZCC4EAOLTf H4pLdxXYmB2u9KHz8t+UntYCMSy28CtXGpJl8quV1Xq93iiV1+ZTFTiH3LPHu/q8 pF6dNgP9Pf4HkrHDAvW4fwO8a7apKv5ZxwAAAABJRU5ErkJggg==</icon>
     <properties>
         <!-- 自定义配置属性 dataSource -->
-        <propertyGroup caption="dataSource">
-            <property key="FormattedTooltip" type="string" required="false">
-                <caption>tooltip formatter</caption>
-                <description>tooltip formatter(触摸输出信息框的格式) </description>
-            </property>
+        <propertyGroup caption="DataSource">
+
             <!-- 自定义配置属性 General -->
             <property key="dataSource" type="datasource" isList="true" required="true">
                 <caption>Data source</caption>
@@ -41,19 +38,22 @@
                 <description/>
                 <enumerationValues>
                     <enumerationValue key="pie">Pie</enumerationValue>
-                    <enumerationValue key="donut">Doughnut</enumerationValue>
+                    <enumerationValue key="RoseArea">RoseByArea</enumerationValue>
+                    <enumerationValue key="RoseRadius">RoseByRadius</enumerationValue>
+                    <enumerationValue key="Doughnut">Doughnut</enumerationValue>
+                    <enumerationValue key="borderRadiusDoughnut">borderRadiusDoughnut</enumerationValue>
                 </enumerationValues>
             </property>
             <property key="ChartTheme" type="enumeration" defaultValue="default">
                 <caption>Chart Theme</caption>
                 <description/>
                 <enumerationValues>
-                <enumerationValue key="default">default</enumerationValue>
+                    <enumerationValue key="default">default</enumerationValue>
                     <enumerationValue key="light">light</enumerationValue>
                     <enumerationValue key="dark">dark</enumerationValue>
                 </enumerationValues>
             </property>
-           
+
             <property key="mytitle" type="string" defaultValue="Title of chart" required="false">
                 <caption>Title of chart</caption>
                 <description>Title of chart</description>
@@ -61,6 +61,10 @@
             <property key="mysubtitle" type="string" defaultValue="Subtitle of chart" required="false">
                 <caption>Subtitle of chart</caption>
                 <description>Subtitle of chart</description>
+            </property>
+            <property key="showtoolBox" type="boolean" defaultValue="true">
+                <caption>Show Tool Box</caption>
+                <description>展示工具盒子</description>
             </property>
             <property key="showLoading" type="boolean" defaultValue="false">
                 <caption>Show Loading animation</caption>
@@ -70,22 +74,38 @@
                 <caption>Loading Time </caption>
                 <description>LoadingTime:ss 加载时间：秒</description>
             </property>
-            <property key="Showlable" type="boolean" defaultValue="false">
+            <property key="Showlable" type="boolean" defaultValue="true">
                 <caption>Show Label</caption>
                 <description></description>
             </property>
+            <property key="ShowLegend" type="boolean" defaultValue="true">
+                <caption>Show Legend</caption>
+                <description></description>
+            </property>
+            <property key="ShowLegendWay" type="enumeration" defaultValue="horizontal">
+                <caption>Show Legend</caption>
+                <description/>
+                <enumerationValues>
+                    <enumerationValue key="horizontal">horizontal</enumerationValue>
+                    <enumerationValue key="vertical">vertical</enumerationValue>
+                </enumerationValues>
+            </property>
+            <property key="FormattedTooltip" type="string" required="false">
+                <caption>Tooltip Formatter</caption>
+                <description>Tooltip Formatter(触摸时 输出信息框的格式) </description>
+            </property>
 
-   
+
 
         </propertyGroup>
 
 
 
         <!-- 自定义配置属性 advance -->
-        <propertyGroup caption="advance">
+        <propertyGroup caption="Advance">
             <property key="Jsondata" type="string" multiline="true" required="false">
-                <caption>My string multiline</caption>
-                <description>My string multiline setting</description>
+                <caption>Json Data Config</caption>
+                <description>this Data will merge with option</description>
             </property>
         </propertyGroup>
         <!-- 自定义配置属性 appearance -->
@@ -103,7 +123,7 @@
                 <caption>Width</caption>
                 <description/>
             </property>
-            <property key="heightUnit" type="enumeration" defaultValue="percentageOfWidth">
+            <property key="heightUnit" type="enumeration" defaultValue="pixels">
                 <caption>Height unit</caption>
                 <description>'Percentage of width' is the aspect ratio, 'Pixels' is absolute. Warning: When using 'Percentage of parent' the parent container must have an absolute height, else nothing is displayed.</description>
                 <enumerationValues>

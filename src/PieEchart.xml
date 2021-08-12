@@ -94,13 +94,28 @@
                 <caption>Tooltip Formatter</caption>
                 <description>Tooltip Formatter(触摸时 输出信息框的格式) </description>
             </property>
-
+            <systemProperty key="Name"/>
+            <systemProperty key="TabIndex"/>
+            <systemProperty key="Visibility"/>
+            <systemProperty key="Editability"/>
 
 
         </propertyGroup>
 
-
-
+ <propertyGroup caption="Event">
+ <property key="onChartReady" type="action">
+                <caption>On Chart Ready</caption>
+                <description>Action to be performed when Chart Ready</description>
+            </property>
+            <property key="onChartClick" type="action">
+                <caption>On click Chart</caption>
+                <description>Action to be performed when click the chart</description>
+            </property>
+            <property key="onChartLegendselectchanged" type="action">
+                <caption>On click Legend select changed</caption>
+                <description>Action to be performed when Legend select changed</description>
+            </property>
+     </propertyGroup>
         <!-- 自定义配置属性 advance -->
         <propertyGroup caption="Advance">
             <property key="Jsondata" type="string" multiline="true" required="false">

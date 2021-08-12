@@ -4,7 +4,7 @@
  * @author Mendix UI Content Team
  */
 import { CSSProperties } from "react";
-import { ListValue, ListAttributeValue } from "mendix";
+import { ActionValue, ListValue, ListAttributeValue } from "mendix";
 import { Big } from "big.js";
 
 export type ChartTypeEnum = "pie" | "RoseArea" | "RoseRadius" | "Doughnut" | "borderRadiusDoughnut";
@@ -36,6 +36,9 @@ export interface PieEchartContainerProps {
     ShowLegend: boolean;
     ShowLegendWay: ShowLegendWayEnum;
     FormattedTooltip: string;
+    onChartReady?: ActionValue;
+    onChartClick?: ActionValue;
+    onChartLegendselectchanged?: ActionValue;
     Jsondata: string;
     widthUnit: WidthUnitEnum;
     width: number;
@@ -60,6 +63,9 @@ export interface PieEchartPreviewProps {
     ShowLegend: boolean;
     ShowLegendWay: ShowLegendWayEnum;
     FormattedTooltip: string;
+    onChartReady: {} | null;
+    onChartClick: {} | null;
+    onChartLegendselectchanged: {} | null;
     Jsondata: string;
     widthUnit: WidthUnitEnum;
     width: number | null;

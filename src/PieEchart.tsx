@@ -13,13 +13,16 @@ export default class PieEchart extends Component<PieEchartContainerProps> {
   private seriesData: any[] = []; //存储chart 的option data 配置
   private echartsReact: any = undefined;
   private chartType: String = '';
-  private legendType:String='';
+  private legendType: String = '';
   constructor(props: PieEchartContainerProps) {
     super(props);
     this.echartsReact = React.createRef();
     this.getOption = this.getOption.bind(this);
     this.chartType = this.props.chartType;
-    
+    this.onChartReady = this.onChartReady.bind(this);
+    this.onChartLegendselectchanged = this.onChartLegendselectchanged.bind(this);
+    this.onChartClick = this.onChartClick.bind(this);
+
   }
   //react 声明周期时刻检查数据变化
   componentDidUpdate() {
@@ -36,8 +39,8 @@ export default class PieEchart extends Component<PieEchartContainerProps> {
       });
 
     }) : null;
-    this.legendType= this.mylegendlist.length<10?"plain": "scroll";
-   
+    this.legendType = this.mylegendlist.length < 10 ? "plain" : "scroll";
+
 
     if (this.mylegendlist != null && this.mypercentlist != null && this.seriesData != null) {
       //判断是否展示加载动画
@@ -113,10 +116,10 @@ export default class PieEchart extends Component<PieEchartContainerProps> {
         orient: this.props.ShowLegendWay,
         left: 'left',
         show: this.props.ShowLegend,
-        data: this.mylegendlist,     
-    
-        top:'10%'
-    
+        data: this.mylegendlist,
+
+        top: '10%'
+
       },
       series: [
         {
@@ -226,17 +229,17 @@ export default class PieEchart extends Component<PieEchartContainerProps> {
         break;
       }
       case "RoseRadius": {
-          //option=deepMerge(option,RoseRadius);
+        //option=deepMerge(option,RoseRadius);
         return deepMerge.all([option, RoseRadius, this.props.Jsondata != null && this.props.Jsondata != '' ? JSON.parse(this.props.Jsondata) : {}], { arrayMerge });
 
         break;
       }
-      case "Doughnut":{
+      case "Doughnut": {
         return deepMerge.all([option, Doughnut, this.props.Jsondata != null && this.props.Jsondata != '' ? JSON.parse(this.props.Jsondata) : {}], { arrayMerge });
 
         break;
       }
-      case "borderRadiusDoughnut" :{
+      case "borderRadiusDoughnut": {
         return deepMerge.all([option, borderRadiusDoughnut, this.props.Jsondata != null && this.props.Jsondata != '' ? JSON.parse(this.props.Jsondata) : {}], { arrayMerge });
 
         break;
@@ -246,7 +249,7 @@ export default class PieEchart extends Component<PieEchartContainerProps> {
         //return deepMerge(option,this.props.Jsondata!=null&&this.props.Jsondata!=''?JSON.parse(this.props.Jsondata):{});
         break;
       }
-    }  
+    }
   }
   componentWillUnmount() {
     while (this.mylegendlist.length) {
@@ -255,7 +258,24 @@ export default class PieEchart extends Component<PieEchartContainerProps> {
       this.seriesData.pop();
     }
   }
-
+  onChartReady() {
+    // console.log('echarts is ready');
+    if (this.props.onChartReady != null && this.props.onChartReady.canExecute) {
+      this.props.onChartReady.execute();
+    }
+  }
+  onChartClick() {
+    console.log('echarts on click');
+    if (this.props.onChartClick != null && this.props.onChartClick.canExecute) {
+      this.props.onChartClick.execute();
+    }
+  };
+  onChartLegendselectchanged() {
+    console.log('legendSlectchanged');
+    if (this.props.onChartLegendselectchanged != null && this.props.onChartLegendselectchanged.canExecute) {
+      this.props.onChartLegendselectchanged.execute();
+    }
+  };
   render(): ReactNode {
     //加载动画
     const loadingOption = {
@@ -274,6 +294,11 @@ export default class PieEchart extends Component<PieEchartContainerProps> {
       loadingOption={loadingOption}
       theme={this.props.ChartTheme === "default" ? "" : this.props.ChartTheme}
       showLoading={this.props.showLoading}// 获得是否显示loading动画
+      onChartReady={this.onChartReady}
+      onEvents={{
+        'click': this.onChartClick,
+        'legendselectchanged': this.onChartLegendselectchanged
+      }}
     />;
   }
 }

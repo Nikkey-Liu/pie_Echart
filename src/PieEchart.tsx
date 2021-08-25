@@ -32,7 +32,6 @@ export default class PieEchart extends Component<PieEchartContainerProps> {
                 const iValue = this.props.PiePercentage.get(item)?.value?.toNumber();
                 this.mylegendlist.push(iLegend);
                 this.mypercentlist.push(iValue);
-
                 this.seriesData.push({
                     value: iValue,
                     name: iLegend
@@ -302,7 +301,7 @@ export default class PieEchart extends Component<PieEchartContainerProps> {
         }
     }
     onChartReady() {
-        // console.log('echarts is ready');
+         console.log('echarts is ready');
         if (this.props.onChartReady != null && this.props.onChartReady.canExecute) {
             this.props.onChartReady.execute();
         }

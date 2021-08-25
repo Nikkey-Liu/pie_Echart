@@ -58,7 +58,7 @@
                 <caption>Title of chart</caption>
                 <description>Title of chart</description>
             </property>
-            <property key="mysubtitle" type="string" defaultValue="Subtitle of chart" required="false">
+            <property key="mysubtitle" type="string"  required="false">
                 <caption>Subtitle of chart</caption>
                 <description>Subtitle of chart</description>
             </property>
@@ -102,8 +102,8 @@
 
         </propertyGroup>
 
- <propertyGroup caption="Event">
- <property key="onChartReady" type="action">
+        <propertyGroup caption="Event">
+            <property key="onChartReady" type="action">
                 <caption>On Chart Ready</caption>
                 <description>Action to be performed when Chart Ready</description>
             </property>
@@ -115,7 +115,7 @@
                 <caption>On click Legend select changed</caption>
                 <description>Action to be performed when Legend select changed</description>
             </property>
-     </propertyGroup>
+        </propertyGroup>
         <!-- 自定义配置属性 advance -->
         <propertyGroup caption="Advance">
             <property key="Jsondata" type="string" multiline="true" required="false">

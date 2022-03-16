@@ -26,6 +26,7 @@ export default class PieEchart extends Component<PieEchartContainerProps> {
     // react 声明周期时刻检查数据变化
     componentDidUpdate() {
         // 读取mendix数据 listAttribute
+        this.clearData();
         if (this.props.dataSource.status === ValueStatus.Available) {
             this.props.dataSource.items?.forEach(item => {
                 const iLegend = this.props.LegandData.get(item)?.value;
@@ -54,6 +55,20 @@ export default class PieEchart extends Component<PieEchartContainerProps> {
         }
     }
     // sizestyle     设置size属性
+    clearData() {
+        while (this.mypercentlist.length) {
+            this.mypercentlist.pop();
+        }
+        while (this.mylegendlist.length) {
+            this.mylegendlist.pop();
+        }
+        while (this.seriesData.length) {
+            this.seriesData.pop();
+        }
+    }
+    componentWillUnmount() {
+        this.clearData();
+    }
 
     renderSizeOfDiv() {
         const mysize = {
@@ -293,15 +308,9 @@ export default class PieEchart extends Component<PieEchartContainerProps> {
             }
         }
     }
-    componentWillUnmount() {
-        while (this.mylegendlist.length) {
-            this.mylegendlist.pop();
-            this.mypercentlist.pop();
-            this.seriesData.pop();
-        }
-    }
+
     onChartReady() {
-         console.log('echarts is ready');
+        console.log("echarts is ready");
         if (this.props.onChartReady != null && this.props.onChartReady.canExecute) {
             this.props.onChartReady.execute();
         }
